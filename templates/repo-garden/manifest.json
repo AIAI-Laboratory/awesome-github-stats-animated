@@ -1,0 +1,29 @@
+{
+  "id": "repo-garden",
+  "name": "Repo Garden",
+  "description": "A warm living garden where commits sprout and active repositories become fruit trees.",
+  "version": "1.0.0",
+  "author": "AIAI Laboratory",
+  "license": "MIT",
+  "entry": "./index.js",
+  "width": 980,
+  "height": 470,
+  "tags": ["garden", "nature", "cozy", "animated"],
+  "options": {
+    "accent": {
+      "type": "color",
+      "default": "#ff695f",
+      "description": "Flower, fruit and label highlight color."
+    },
+    "leaf": {
+      "type": "color",
+      "default": "#8bad6d",
+      "description": "Main foliage color for plants and repository trees."
+    },
+    "background": {
+      "type": "color",
+      "default": "#0d130f",
+      "description": "Night garden background color."
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "id": "ufo-abduction",
+  "name": "UFO Abduction",
+  "description": "A cinematic 2D UFO visits the contribution grid and abducts active commit cells.",
+  "version": "1.0.0",
+  "author": "AIAI Laboratory",
+  "license": "MIT",
+  "entry": "./index.js",
+  "width": 980,
+  "height": 470,
+  "tags": ["ufo", "space", "dark", "animated"],
+  "options": {
+    "accent": {
+      "type": "color",
+      "default": "#ff3b30",
+      "description": "UFO lights, active cells and signal line color."
+    },
+    "background": {
+      "type": "color",
+      "default": "#070708",
+      "description": "Background color of the space card."
+    },
+    "duration": {
+      "type": "number",
+      "default": 18,
+      "description": "Duration of one complete abduction route in seconds.",
+      "min": 10,
+      "max": 40
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "@aiai/github-stats-templates",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Community-editable SVG templates for AIAI GitHub Stats",
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "preview": "node scripts/render.mjs",
+    "test": "npm run validate && npm run preview"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}

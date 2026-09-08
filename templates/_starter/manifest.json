@@ -1,0 +1,29 @@
+{
+  "id": "starter-card",
+  "name": "Starter Card",
+  "description": "A clean, editable contribution card demonstrating the complete template contract.",
+  "version": "1.0.0",
+  "author": "AIAI Laboratory",
+  "license": "MIT",
+  "entry": "./index.js",
+  "width": 980,
+  "height": 320,
+  "tags": ["starter", "minimal", "grid"],
+  "options": {
+    "accent": {
+      "type": "color",
+      "default": "#ff3b30",
+      "description": "Primary highlight color used by active contribution cells."
+    },
+    "background": {
+      "type": "color",
+      "default": "#09090a",
+      "description": "Card background color."
+    },
+    "showHandle": {
+      "type": "boolean",
+      "default": true,
+      "description": "Show the GitHub username below the display name."
+    }
+  }
+}
