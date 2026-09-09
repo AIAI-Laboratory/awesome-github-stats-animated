@@ -9,12 +9,13 @@ Kho template SVG animation dành cho [AIAI GitHub Stats](https://aisq.dev/github
 | `starter-card` | Bộ khung tối giản, có đủ data mapping để bắt đầu nhanh | [`previews/starter-card.svg`](./previews/starter-card.svg) |
 | `ufo-abduction` | UFO 2D bay qua contribution grid và hút commit | [`previews/ufo-abduction.svg`](./previews/ufo-abduction.svg) |
 | `repo-garden` | Contribution graph trở thành khu vườn sống | [`previews/repo-garden.svg`](./previews/repo-garden.svg) |
+| `particle-collider` | Repo trở thành nguồn hạt, commit va chạm và thắp sáng detector grid | [`previews/particle-collider.svg`](./previews/particle-collider.svg) |
 
 ## Bắt đầu nhanh
 
 ```bash
-git clone https://github.com/AIAI-Laboratory/github-stats-templates.git
-cd github-stats-templates
+git clone https://github.com/AIAI-Laboratory/awesome-github-stats-animated.git
+cd awesome-github-stats-animated
 npm run test
 ```
 
@@ -39,6 +40,7 @@ templates/
     README.md           Cách tùy biến template
   ufo-abduction/
   repo-garden/
+  particle-collider/
 schema/
   template.schema.json  Chuẩn manifest
 src/

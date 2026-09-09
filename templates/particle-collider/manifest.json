@@ -1,0 +1,45 @@
+{
+  "id": "particle-collider",
+  "name": "Git Particle Collider",
+  "description": "Repositories become particle sources whose animated collisions illuminate a contribution detector grid.",
+  "version": "1.0.0",
+  "author": "AIAI Laboratory",
+  "license": "MIT",
+  "entry": "./index.js",
+  "width": 980,
+  "height": 470,
+  "tags": ["particle", "science", "collider", "animated", "auto-theme"],
+  "options": {
+    "theme": {
+      "type": "select",
+      "default": "auto",
+      "description": "Auto follows the viewer color scheme; dark and light force a fixed appearance.",
+      "choices": ["auto", "dark", "light"]
+    },
+    "accent": {
+      "type": "color",
+      "default": "#ff5a4f",
+      "description": "Collision core, experiment label and primary highlight color."
+    },
+    "particleA": {
+      "type": "color",
+      "default": "#43e2ff",
+      "description": "First beam, detector and primary particle color."
+    },
+    "particleB": {
+      "type": "color",
+      "default": "#ffc857",
+      "description": "Secondary particle and collision ray color."
+    },
+    "particleC": {
+      "type": "color",
+      "default": "#ba77ff",
+      "description": "Opposing beam and third particle color."
+    },
+    "particleD": {
+      "type": "color",
+      "default": "#63e6a3",
+      "description": "Fourth particle and debris color."
+    }
+  }
+}
