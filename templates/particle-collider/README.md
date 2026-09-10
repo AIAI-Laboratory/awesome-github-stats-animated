@@ -1,39 +1,32 @@
 # Git Particle Collider
 
-Template biến activity GitHub thành một thí nghiệm máy gia tốc hạt:
+Repository particles follow intersecting orbits, collide and illuminate a contribution detector.
 
-- repository → nguồn hạt và particle chạy trên quỹ đạo;
-- programming language → ký hiệu loại hạt;
-- commit → năng lượng chùm tia;
-- contribution → detector hit;
-- streak → độ ổn định của chùm tia;
-- star → photon được phát hiện.
+## Chạy và chỉnh sửa
 
-Hai repo được chọn làm nguồn bắn hạt vào tâm va chạm. Tối đa tám active repo cùng chuyển động trên nhiều quỹ đạo với tốc độ lệch nhau, sau đó mảnh va chạm rơi xuống contribution detector grid. Collision rate tăng dần từ `0` đến tỷ lệ active day thực tế.
+`index.js` giữ contract chung `render({ profile, calendar, options })`. Sửa hình vẽ và animation trong `renderer.js`; bảng màu dark/light dùng chung nằm ở `src/githubStatsTheme.js`.
 
-## Tùy chỉnh
-
-| Option | Mặc định | Ý nghĩa |
-| --- | --- | --- |
-| `theme` | `auto` | `auto`, `dark` hoặc `light`; auto dùng `prefers-color-scheme` ngay trong SVG |
-| `accent` | `#ff5a4f` | Lõi va chạm và điểm nhấn chính |
-| `particleA` | `#43e2ff` | Beam trái và detector |
-| `particleB` | `#ffc857` | Tia va chạm phụ |
-| `particleC` | `#ba77ff` | Beam phải |
-| `particleD` | `#63e6a3` | Hạt và debris bổ sung |
-
-Nếu nền tảng tạo palette analogic năm màu, map màu gốc vào `accent` và bốn màu còn lại lần lượt vào `particleA`–`particleD`. Template không tự gọi API hoặc tải tài nguyên bên ngoài.
-
-## Chạy preview
+- `theme`: `auto` (mặc định), `dark`, `light`. Auto đổi màu bằng CSS bên trong SVG.
+- `accent`: mã màu HEX sáu chữ số. Không chỉnh màu sẽ giữ nguyên palette gốc theo theme.
+- `particleA`–`particleD`: bốn màu phụ khi tùy biến palette. Website có thể tạo chúng từ màu chủ đạo bằng The Color API; template không tự gọi network.
 
 ```bash
-npm run test
+npm test
 ```
 
-Preview được tạo tại `previews/particle-collider.svg`. Animation có fallback cho `prefers-reduced-motion`.
+Xem `previews/particle-collider.svg` và `previews/particle-collider-light.svg`. Tất cả animation có fallback reduced-motion.
 
-Sau khi template được duyệt trên nền tảng, cách nhúng dự kiến:
+## Dữ liệu và animation
 
-```md
-![GitHub Particle Collider](https://aisq.dev/api/github-stats/USERNAME?template=particle-collider)
+Mỗi lần render chọn hai repo làm nguồn, tạo mã experiment ngẫu nhiên. Tối đa 10 repo chạy nhiều quỹ đạo ngược chiều và giao nhau. Collision rate tăng từ 0 đến tỷ lệ active days, không giả lập tăng số commit thật.
+
+## Website
+
+Trong ứng dụng có live template library, chọn **Git Particle Collider** từ repo để render bằng dữ liệu thật:
+
+```text
+/api/github-stats/USERNAME?template=particle-collider
+/api/github-stats/USERNAME?template=particle-collider&theme=light&color=FF4DDE
 ```
+
+Mẫu được tải tại runtime từ commit hiện hành của catalog, không cần thêm renderer riêng vào website.

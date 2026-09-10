@@ -2,7 +2,7 @@
   "id": "starter-card",
   "name": "Starter Card",
   "description": "A clean, editable contribution card demonstrating the complete template contract.",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "author": "AIAI Laboratory",
   "license": "MIT",
   "entry": "./index.js",
@@ -15,10 +15,11 @@
       "default": "#ff3b30",
       "description": "Primary highlight color used by active contribution cells."
     },
-    "background": {
-      "type": "color",
-      "default": "#09090a",
-      "description": "Card background color."
+    "theme": {
+      "type": "select",
+      "default": "auto",
+      "choices": ["auto", "dark", "light"],
+      "description": "Auto follows the viewer theme; light uses a white background."
     },
     "showHandle": {
       "type": "boolean",

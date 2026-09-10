@@ -1,15 +1,15 @@
 {
-  "id": "ufo-abduction",
-  "name": "UFO Abduction",
-  "description": "A 2D UFO follows a randomized route and collects contributions across the entire grid.",
-  "version": "2.0.0",
+  "id": "field-notes",
+  "name": "Field Notes",
+  "description": "A minimal scientific activity record with a weekly trace, contribution dots and quiet animation.",
+  "version": "1.0.0",
   "author": "AIAI Laboratory",
   "license": "MIT",
   "entry": "./index.js",
   "width": 980,
   "height": 470,
   "tags": [
-    "ufo-abduction",
+    "field-notes",
     "animated",
     "auto-theme"
   ],
@@ -26,7 +26,7 @@
     },
     "accent": {
       "type": "color",
-      "default": "#ff3b30",
+      "default": "#ff5a4f",
       "description": "Primary highlight color. The default preserves the original theme palette."
     }
   }

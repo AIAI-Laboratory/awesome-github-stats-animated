@@ -82,3 +82,13 @@ npm run preview
 ```
 
 Validator import từng renderer, render với fixture và kiểm tra contract, kích thước, script/event handler, URL ngoài và kích thước file.
+
+## 7. Chạy trên website
+
+Website đọc catalog GitHub ở runtime và tạo các controls từ `manifest.options`. Dùng `theme` kiểu select (`auto`, `dark`, `light`), `accent` kiểu color và các option riêng nếu cần. Các mẫu hoàn chỉnh dùng `normalizeTemplateInput(manifest, input)` từ SDK để chuẩn hóa dữ liệu, giữ palette mặc định và nhận palette tùy chỉnh.
+
+Không dựa vào browser DOM hoặc Node.js: mã chạy trong QuickJS WebAssembly, không có `fetch`, `process`, `require`, filesystem hay token. Chỉ import JS/JSON tương đối trong thư mục template của bạn, `../../src/sdk.js` và `../../src/githubStatsTheme.js`. Tổng bundle tối đa 20 file / 500 KB. Renderer phải đồng bộ, không Promise, và hoàn tất trong 300 ms / 24 MB bộ nhớ.
+
+`Intl.NumberFormat` chỉ hỗ trợ định dạng số tiếng Anh cơ bản và compact phục vụ SDK. Nếu cần tên tháng, dùng mảng tên tháng cố định và `getUTCMonth()`; không dựa vào toàn bộ Intl/locale của trình duyệt. Giữ output SVG dưới 500 KB và không dùng tài nguyên ngoài, CSS import, script hoặc foreignObject.
+
+Khi có thay đổi trên nhánh `main`, website tải lại catalog sau khoảng 5 phút. Các file của một lượt render luôn lấy từ cùng commit. Pull request là nơi review thay đổi trước khi người dùng nhận mẫu mới.

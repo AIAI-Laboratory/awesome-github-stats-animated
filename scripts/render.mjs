@@ -13,6 +13,12 @@ for (const { manifest, renderer } of await loadTemplates()) {
     options: optionDefaults(manifest),
   });
   const output = join(outputDirectory, `${manifest.id}.svg`);
-  await writeFile(output, svg, 'utf8');
+  await writeFile(output, svg.replace(/[ \t]+$/gm, ''), 'utf8');
   console.log(`✓ ${output}`);
+  if (manifest.options.theme) {
+    const lightSvg = await renderer.render({ ...exampleStats, options: { ...optionDefaults(manifest), theme: 'light' } });
+    const lightOutput = join(outputDirectory, `${manifest.id}-light.svg`);
+    await writeFile(lightOutput, lightSvg.replace(/[ \t]+$/gm, ''), 'utf8');
+    console.log(`✓ ${lightOutput}`);
+  }
 }

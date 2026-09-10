@@ -46,6 +46,19 @@ for (const template of templates) {
   for (const rule of FORBIDDEN) {
     assert(!rule.pattern.test(svg), `${folder}: output contains forbidden ${rule.label}`);
   }
+  if (manifest.options.theme) {
+    for (const theme of ['auto', 'dark', 'light']) {
+      const themed = renderer.render({ ...exampleStats, options: { theme } });
+      assert(typeof themed === 'string' && themed.startsWith('<svg'), `${folder}: ${theme} render must be synchronous`);
+      assert(!themed.includes('NaN'), `${folder}: ${theme} has invalid coordinates`);
+      assert(Buffer.byteLength(themed) <= 500_000, `${folder}: ${theme} exceeds 500 KB`);
+      if (theme === 'auto') assert(themed.includes('prefers-color-scheme:light'), `${folder}: auto must contain an adaptive theme`);
+      if (theme === 'light') assert(themed.includes('#ffffff'), `${folder}: light must include a white background`);
+      for (const rule of FORBIDDEN) assert(!rule.pattern.test(themed), `${folder}: ${theme} contains ${rule.label}`);
+    }
+    const custom = renderer.render({ ...exampleStats, options: { theme: 'light', accent: '#8855ff' } });
+    assert(custom.includes('#8855ff'), `${folder}: custom accent not applied`);
+  }
   console.log(`✓ ${manifest.id} (${Buffer.byteLength(svg)} bytes)`);
 }
 

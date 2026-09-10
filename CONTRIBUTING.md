@@ -31,4 +31,4 @@ Cảm ơn bạn muốn biến dữ liệu GitHub thành một câu chuyện tr�
 
 ## Review
 
-Maintainer có thể yêu cầu thay đổi về accessibility, hiệu năng, bản quyền hoặc độ an toàn. Template được merge sẽ được phát hành lên catalog theo đợt; merge không đảm bảo deploy ngay lập tức.
+Maintainer có thể yêu cầu thay đổi về accessibility, hiệu năng, bản quyền hoặc độ an toàn. Với website có live template library, template hợp lệ đã merge vào `main` sẽ xuất hiện sau lần cập nhật catalog (khoảng 5 phút), không cần deploy riêng từng mẫu. Vì vậy hãy hoàn tất review trước khi merge.

@@ -1,3 +1,5 @@
+import { normalizeStatsAccentColor } from './githubStatsTheme.js';
+
 export function escapeXml(value) {
   return String(value ?? '')
     .replaceAll('&', '&amp;')
@@ -55,7 +57,7 @@ export function normalizeStats(input = {}) {
       name: String(profile.name || profile.login || 'GitHub User'),
       publicRepos: Number(profile.publicRepos) || 0,
       followers: Number(profile.followers) || 0,
-      activeRepos: Array.isArray(profile.activeRepos) ? profile.activeRepos.slice(0, 8) : [],
+      activeRepos: Array.isArray(profile.activeRepos) ? profile.activeRepos.slice(0, 10) : [],
       activeRepoStars: Number(profile.activeRepoStars) || 0,
     },
     calendar: {
@@ -79,4 +81,19 @@ export function svgDocument({ width, height, title, description, body, styles = 
   <defs>${defs}<style>${styles}</style></defs>
   ${body}
 </svg>`;
+}
+
+export function normalizeTemplateInput(manifest, input = {}) {
+  const options = mergeOptions(manifest, input.options);
+  const theme = ['auto', 'dark', 'light'].includes(options.theme) ? options.theme : 'auto';
+  const accent = normalizeStatsAccentColor(options.accent);
+  const keys = ['particleA', 'particleB', 'particleC', 'particleD'];
+  const changedPalette = keys.some((key) => manifest.options[key] && options[key] !== manifest.options[key].default);
+  const custom = changedPalette || accent !== manifest.options.accent?.default;
+  const palette = keys.map((key) => normalizeStatsAccentColor(options[key]));
+  return {
+    ...normalizeStats(input), theme,
+    accentColor: custom ? accent : undefined,
+    accentPalette: changedPalette && palette.every(Boolean) ? [accent, ...palette] : undefined,
+  };
 }

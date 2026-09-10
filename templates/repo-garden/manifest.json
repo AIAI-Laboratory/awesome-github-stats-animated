@@ -1,29 +1,53 @@
 {
   "id": "repo-garden",
   "name": "Repo Garden",
-  "description": "A warm living garden where commits sprout and active repositories become fruit trees.",
-  "version": "1.0.0",
+  "description": "A spacious contribution garden with growing plants, a streak vine and active repository trees.",
+  "version": "2.0.0",
   "author": "AIAI Laboratory",
   "license": "MIT",
   "entry": "./index.js",
   "width": 980,
   "height": 470,
-  "tags": ["garden", "nature", "cozy", "animated"],
+  "tags": [
+    "repo-garden",
+    "animated",
+    "auto-theme"
+  ],
   "options": {
+    "theme": {
+      "type": "select",
+      "default": "auto",
+      "description": "Auto follows the viewer color scheme inside the SVG.",
+      "choices": [
+        "auto",
+        "dark",
+        "light"
+      ]
+    },
     "accent": {
       "type": "color",
-      "default": "#ff695f",
-      "description": "Flower, fruit and label highlight color."
+      "default": "#ff7469",
+      "description": "Primary highlight color. The default preserves the original theme palette."
     },
-    "leaf": {
+    "particleA": {
       "type": "color",
-      "default": "#8bad6d",
-      "description": "Main foliage color for plants and repository trees."
+      "default": "#43e2ff",
+      "description": "Custom palette color 2 for foliage, flowers and fruit."
     },
-    "background": {
+    "particleB": {
       "type": "color",
-      "default": "#0d130f",
-      "description": "Night garden background color."
+      "default": "#ffc857",
+      "description": "Custom palette color 3 for foliage, flowers and fruit."
+    },
+    "particleC": {
+      "type": "color",
+      "default": "#ba77ff",
+      "description": "Custom palette color 4 for foliage, flowers and fruit."
+    },
+    "particleD": {
+      "type": "color",
+      "default": "#63e6a3",
+      "description": "Custom palette color 5 for foliage, flowers and fruit."
     }
   }
 }

@@ -10,6 +10,9 @@ Kho template SVG animation dành cho [AIAI GitHub Stats](https://aisq.dev/github
 | `ufo-abduction` | UFO 2D bay qua contribution grid và hút commit | [`previews/ufo-abduction.svg`](./previews/ufo-abduction.svg) |
 | `repo-garden` | Contribution graph trở thành khu vườn sống | [`previews/repo-garden.svg`](./previews/repo-garden.svg) |
 | `particle-collider` | Repo trở thành nguồn hạt, commit va chạm và thắp sáng detector grid | [`previews/particle-collider.svg`](./previews/particle-collider.svg) |
+| `field-notes` | Minimal science: chữ monospace, trace theo tuần và contribution dạng chấm | [`previews/field-notes.svg`](./previews/field-notes.svg) |
+
+Tất cả mẫu hỗ trợ **Auto / Dark / Light**, màu chủ đạo và reduced motion. Bản light có hậu cảnh trắng. Preview nền sáng có hậu tố `-light.svg`, ví dụ [`Field Notes light`](./previews/field-notes-light.svg).
 
 ## Bắt đầu nhanh
 
@@ -25,7 +28,7 @@ Không cần cài package bên ngoài. Node.js 20 trở lên là đủ.
 
 1. Copy thư mục `templates/_starter` thành `templates/<template-id>`.
 2. Sửa `manifest.json` và giữ `id` trùng với tên thư mục.
-3. Chỉnh hàm `render()` trong `index.js`.
+3. Chỉnh hàm `render()` trong `index.js`; với các mẫu hoàn chỉnh, phần hình vẽ nằm trong `renderer.js`.
 4. Chạy `npm run test` để validate và tạo preview.
 5. Mở `previews/<template-id>.svg` để kiểm tra animation.
 6. Gửi pull request theo hướng dẫn trong [`CONTRIBUTING.md`](./CONTRIBUTING.md).
@@ -41,10 +44,12 @@ templates/
   ufo-abduction/
   repo-garden/
   particle-collider/
+  field-notes/
 schema/
   template.schema.json  Chuẩn manifest
 src/
   sdk.js                Helper an toàn dùng chung
+  githubStatsTheme.js   Auto/Dark/Light và palette dùng chung
 fixtures/
   example-stats.js      Dữ liệu giả để preview
 scripts/
@@ -78,13 +83,25 @@ Template chỉ tạo SVG thuần. Không dùng network request, filesystem, `eva
 
 ## Sử dụng trên README
 
-Sau khi template được duyệt và tích hợp vào catalog của nền tảng, URL có dạng:
+Trong phiên bản website có Live GitHub Template Library, URL có dạng:
 
 ```md
 ![GitHub stats](https://aisq.dev/api/github-stats/USERNAME?template=TEMPLATE_ID)
 ```
 
-Việc có mặt trong repository chưa tự động đồng nghĩa template đã được deploy. Pull request cần qua validate, review thiết kế và bước phát hành của AIAI.
+Website đọc manifest từ nhánh `main`, rồi tải renderer cùng SDK ở một commit thống nhất và render ngay khi người dùng chọn mẫu. Catalog cập nhật mỗi 5 phút; template mới không cần build/deploy lại website. Chỉ bản tích hợp thư viện trên website cần được deploy lần đầu.
+
+```text
+/api/github-stats/USERNAME?template=field-notes
+/api/github-stats/USERNAME?template=repo-garden&theme=light&color=FF4DDE
+/api/github-stats/USERNAME?template=particle-collider&opt.particleA=%2343e2ff
+```
+
+Template phải qua review trước khi merge. Môi trường render chỉ cho phép module trong thư mục template, `src/sdk.js` và `src/githubStatsTheme.js`; không có Node, network, filesystem hoặc token. `render()` đồng bộ, tối đa 300 ms / 24 MB, output SVG dưới 500 KB. Không thêm dependency npm vào template.
+
+## Cập nhật phiên bản 2
+
+UFO, Garden, Collider và Starter đã đồng bộ với thiết kế mới nhất. Option `background`, `leaf`, `duration` của các mẫu cũ được thay bằng `theme` và bộ màu được renderer hỗ trợ. Hai mẫu nhiều màu Garden/Collider có `particleA`–`particleD` để nhận palette từ website; giữ mặc định sẽ dùng palette gốc theo theme. Field Notes là mẫu mới phiên bản 1.0.0.
 
 ## License
 

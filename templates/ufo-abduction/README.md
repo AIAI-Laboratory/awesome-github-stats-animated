@@ -1,18 +1,31 @@
 # UFO Abduction
 
-Một UFO 2D bay qua nhiều vùng của contribution graph. Các ô commit sáng được hút lên theo từng pha rồi xuất hiện lại khi chu kỳ mới bắt đầu.
+A 2D UFO follows a randomized route and collects contributions across the entire grid.
 
-## Data mapping
+## Chạy và chỉnh sửa
 
-- Contribution level → cường độ màu đỏ.
-- Active contribution → vật thể được UFO hút.
-- Weekly totals → đường signal phía trên graph.
-- Total/current streak/active days → các metric ở header.
+`index.js` giữ contract chung `render({ profile, calendar, options })`. Sửa hình vẽ và animation trong `renderer.js`; bảng màu dark/light dùng chung nằm ở `src/githubStatsTheme.js`.
 
-## Options
+- `theme`: `auto` (mặc định), `dark`, `light`. Auto đổi màu bằng CSS bên trong SVG.
+- `accent`: mã màu HEX sáu chữ số. Không chỉnh màu sẽ giữ nguyên palette gốc theo theme.
 
-- `accent`: màu signal, đèn UFO và active commit.
-- `background`: nền thẻ.
-- `duration`: thời gian hoàn thành một vòng bay, từ 10–40 giây.
+```bash
+npm test
+```
 
-Bạn có thể sửa route trong `@keyframes flight`, hình thân tàu trong `renderUfo()` và logic chia phase trong `renderCells()`.
+Xem `previews/ufo-abduction.svg` và `previews/ufo-abduction-light.svg`. Tất cả animation có fallback reduced-motion.
+
+## Dữ liệu và animation
+
+UFO 2D bắt đầu ngẫu nhiên, di chuyển qua các vùng của graph và hút hết ô contribution. Weekly contributions tạo đường signal. Thời gian mỗi hành trình được tính trong renderer; option `duration` và `background` cũ đã được thay bằng theme thống nhất.
+
+## Website
+
+Trong ứng dụng có live template library, chọn **UFO Abduction** từ repo để render bằng dữ liệu thật:
+
+```text
+/api/github-stats/USERNAME?template=ufo-abduction
+/api/github-stats/USERNAME?template=ufo-abduction&theme=light&color=FF4DDE
+```
+
+Mẫu được tải tại runtime từ commit hiện hành của catalog, không cần thêm renderer riêng vào website.
